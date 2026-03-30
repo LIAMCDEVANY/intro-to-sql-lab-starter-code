@@ -9,7 +9,7 @@ LIMIT 1;
 SELECT language
 FROM countrylanguage
 WHERE countrycode = 'VAT'
-  AND isofficial = TRUE;
+  AND isofficial = 'T';
 
 -- Clue #3:
 SELECT c.name, c.code
@@ -17,8 +17,9 @@ FROM country c
 JOIN countrylanguage cl
   ON c.code = cl.countrycode
 WHERE cl.language = 'Italian'
-  AND cl.isofficial = TRUE
-  AND cl.percentage = 100;
+  AND cl.isofficial = 'T'
+  AND cl.percentage = 100
+  AND c.code <> 'VAT';
 
 -- Clue #4:
 SELECT name
@@ -46,4 +47,4 @@ WHERE id = (
 -- Clue #7:
 SELECT name, countrycode
 FROM city
-WHERE population = 91084;
+WHERE population BETWEEN 91000 AND 92000;
